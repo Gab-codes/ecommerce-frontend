@@ -1,0 +1,10 @@
+:root {
+    --text-color: #000;    
+    --font-roboto: "Roboto";
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+      --text-color: #fff;
+    }
+  }
