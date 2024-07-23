@@ -1,22 +1,23 @@
-import { useEffect, useState } from "react";
-import { useSwipeable } from 'react-swipeable';
+import { useEffect, useState, useRef } from "react";
 import { ArrowBigLeft, ArrowBigRight, Circle, CircleDot } from "lucide-react";
 import React from "react";
-import "./ImageSlider.css"
-
-
-
+import "./ImageSlider.css";
 
 export function ImageSlider({ images }) {
   const [imageIndex, setImageIndex] = useState(0);
+  const [dragging, setDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const sliderRef = useRef(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setImageIndex(index => (index === images.length - 1 ? 0 : index + 1));
+      if (!dragging) {
+        setImageIndex(index => (index === images.length - 1 ? 0 : index + 1));
+      }
     }, 15000);
 
     return () => clearInterval(interval);
-  }, [images]);
+  }, [images, dragging]);
 
   function showNextImage() {
     setImageIndex(index => (index === images.length - 1 ? 0 : index + 1));
@@ -26,15 +27,60 @@ export function ImageSlider({ images }) {
     setImageIndex(index => (index === 0 ? images.length - 1 : index - 1));
   }
 
-  const handlers = useSwipeable({
-    onSwipedLeft: showNextImage,
-    onSwipedRight: showPreviousImage,
-    preventDefaultTouchmoveEvent: true,
-    trackMouse: true
-  });
+  const handleMouseDown = (e) => {
+    setDragging(true);
+    setStartX(e.clientX);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!dragging) return;
+    const diff = startX - e.clientX;
+    if (diff > 50) {
+      showNextImage();
+      setDragging(false);
+    } else if (diff < -50) {
+      showPreviousImage();
+      setDragging(false);
+    }
+  };
+
+  const handleMouseUp = () => {
+    setDragging(false);
+  };
+
+  const handleTouchStart = (e) => {
+    setDragging(true);
+    setStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!dragging) return;
+    const diff = startX - e.touches[0].clientX;
+    if (diff > 50) {
+      showNextImage();
+      setDragging(false);
+    } else if (diff < -50) {
+      showPreviousImage();
+      setDragging(false);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setDragging(false);
+  };
 
   return (
-    <section style={{ width: "100%", height: "100%", position: "relative" }} {...handlers}>
+    <section
+      style={{ width: "100%", height: "100%", position: "relative" }}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+      ref={sliderRef}
+    >
       <div className="hero-slider-container">
         {images.map(({ url, alt }, index) => (
           <img
@@ -42,7 +88,7 @@ export function ImageSlider({ images }) {
             alt={alt}
             aria-hidden={imageIndex !== index}
             src={url}
-            className="hero-slider-img"
+            className={`hero-slider-img ${imageIndex === index ? 'active' : ''}`}
             style={{ transform: `translateX(${-100 * imageIndex}%)` }}
           />
         ))}

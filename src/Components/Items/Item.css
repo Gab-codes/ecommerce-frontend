@@ -1,6 +1,7 @@
 .item-container{
     width: 240px;
     transition: transform 0.4s ease-in-out;
+    max-height: 370px;
 }
 
 .item-container p{
@@ -10,6 +11,7 @@
 .item-container img{
     width: 100%;
     border-radius: 10px;
+    max-height: 43vh;
 }
 
 .item-prices{

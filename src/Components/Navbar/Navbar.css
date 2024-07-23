@@ -19,6 +19,11 @@
   gap: 10px;
 }
 
+.nav-logo img{
+    width: 100%;
+    max-width: 45px;
+}
+
 .nav-logo p {
   color: var(--text-color);
   font-size: 38px;
@@ -43,10 +48,10 @@
 .menuItems {
   display: flex;
   align-items: center;
-  gap: 47px;
+  gap: 36px;
   list-style: none;
   margin-right: 50px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
   color: #626262;
 }
@@ -119,8 +124,9 @@
 @media screen and (max-width: 830px) {
   .navbar {
     justify-content: space-between;
-    padding-right: 20px;
-    padding-left: 20px;
+    padding: 11px 20px; 
+    left: 20;
+    right: 20;
   }
 
   .nav-logo p {
@@ -158,11 +164,11 @@
     align-items: flex-start;
     gap: 13px;
     margin-right: -6vw;
-    margin-top: -90px;
+    margin-top: -99px;
     background-color: #fff;
     width: 300px;
     height: 100vh;
-    font-size: 24px;
+    font-size: 20px;
     padding: 60px 0 0 15px;
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
     z-index: 5;

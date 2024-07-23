@@ -1,5 +1,5 @@
-import React from 'react'
-import "./Item.css"
+import React from 'react';
+import "./Item.css"; 
 
 export const Item = (props) => {
   return (

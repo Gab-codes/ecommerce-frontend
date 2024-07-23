@@ -1,50 +1,52 @@
-.popular-container{
+.new-collections-container{
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    height: 100%;
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+    margin-bottom: 100px;
 }
 
-.popular-container h1{
+.new-collections-container h1{
     color: #171717;
     font-size: 50px;
     font-weight: 600;
 }
 
-.popular-container hr{
+.new-collections-container hr{
     width: 200px;
     min-height: 6px;
     border-radius: 10px;
     background: #252525;
 }
 
-.popular-item{
+.collections{
     margin-top: 50px;
     display: flex;
-    gap: 28px;
+    gap: 50px;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
 
 @media screen and (max-width: 830px) {
-    .popular-container{
+    .new-collections-container{
         margin-top: 30px;
         gap: 8px;
 
     }
 
-    .popular-container h1{
+    .new-collections-container h1{
         font-size: 36px;
     }
 
-    .popular-container hr{
+    .new-collections-container hr{
         width: 180px;
         min-height: 5px;
     }
 
-    .popular-item{
+    .collections{
         margin-top: 50px;
         gap: 20px;
     }
