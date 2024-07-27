@@ -47,11 +47,12 @@
     cursor: pointer;
     color: #025162;
     background-color: #EADFD8;
-    transition: background-color 0.3s; 
+    transition: background-color, scale 0.3s; 
 }
 
 .offer-card button:hover {
     background-color: #d4c4b8; 
+    scale: 1.05;
 }
 
 @media screen and (max-width: 800px) {

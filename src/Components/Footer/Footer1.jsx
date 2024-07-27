@@ -22,7 +22,7 @@ export const Footer1 = () => {
                 <img src={savings} alt="savings icon image" />
                 <h2>Amazing Savings</h2>
                 <p>
-                Special discounts for regular customers.             Coupons up to N100,000
+                Special discounts for regular customers. Coupons up to N100,000
                 </p>
             </li>
         </ul>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import "./Navbar.css";
 import logo from "../Assets/logo.png";
 import cart_icon from "../Assets/Navbar/cart_icon.png";
@@ -6,11 +6,14 @@ import navMenu from "../Assets/Navbar/menu.svg";
 import closeMenu from "../Assets/Navbar/closeMenu.svg";
 import account from "../Assets/Navbar/account.svg";
 import { Link } from 'react-router-dom';
+import { ShopContext } from '../../Context/ShopContext';
 
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menu, setMenu] = useState("shop");
   const navRef = useRef();
+  const { getTotalCartItems} = useContext(ShopContext);
+
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -29,7 +32,7 @@ export const Navbar = () => {
     <nav className='navbar' ref={navRef}>
       <div className="nav-logo">
         <img src={logo} alt="logo" />
-        <p>SHOPPER</p>
+        <p>SHOP</p>
       </div>
       <div className="navContainer">
         <div className='navMenu'>
@@ -62,11 +65,13 @@ export const Navbar = () => {
           <Link to="/login">
             <button>login</button>
           </Link>
-          <img src={account} className='nav-account' alt="account icon" />
+          <Link to="/login">
+            <img src={account} className='nav-account' alt="person icon" />
+          </Link>
           <Link to="/cart">
             <img src={cart_icon} className='cartIcon' alt="cart icon" />
           </Link>
-          <div className="nav-cart-count">0</div>
+          <div className="nav-cart-count">{getTotalCartItems()}</div>
         </div>
       </div>
     </nav>

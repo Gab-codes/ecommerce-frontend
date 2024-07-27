@@ -13,7 +13,7 @@ export const Footer2 = () => {
     </div>
     <form action="">
         <div className='newsletter-subscribe'> 
-                <input type="email"  placeholder='Your Email'/>
+                <input type="email"  placeholder='Your Email'  required/>
                 <button type='submit'>Subscribe</button>
         </div>
     </form>
