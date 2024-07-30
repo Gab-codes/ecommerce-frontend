@@ -3,7 +3,6 @@ import "./CartItems.css";
 import { ShopContext } from '../../Context/ShopContext';
 import remove_icon from "../Assets/cart_cross_icon.png";
 
-
 export const CartItems = () => {
     const {getTotalCartAmount, all_product, cartItems, removeFromCart} = useContext(ShopContext);
 
@@ -11,22 +10,23 @@ export const CartItems = () => {
     <div className="cartitems">
         <div className="cartitems-format-main">
             <p>Products</p>
-            <p>Title</p>
             <p>Price</p>
             <p>Quantity</p>
             <p>Total</p>
-            <p>Remove</p>
+
         </div>
         <hr />
         {all_product.map((e)=>{
             if(cartItems[e.id] > 0){
-                return <div>
+                return <div key={e.id}>
                             <div className="cartitems-format-main cartitems-format">
-                                <img src={e.image} alt={`${e.name} image`} className='carticon-product-icon'/>
-                                <p>{e.name}</p>
-                                <p>${e.new_price}</p>
+                                <span>
+                                    <img src={e.image} alt={`${e.name} image`} className='carticon-product-icon'/>
+                                    <p>{e.name}</p>
+                                </span>
+                                <label>${e.new_price}</label>
                                 <button className='cartitems-quantity'>{cartItems[e.id]}</button>
-                                <p>${e.new_price*cartItems[e.id]}</p>
+                                <label>${e.new_price*cartItems[e.id]}</label>
                                 <img className='cartitem-remove-icon' src={remove_icon} alt="remove icon" onClick={()=>{removeFromCart(e.id)}}/>
                             </div>
                         </div>
@@ -42,9 +42,9 @@ export const CartItems = () => {
                         <p>${getTotalCartAmount()}</p>
                     </div>
                     <hr />
-                    <div className='cartitems-total-item'>
+                    <div className='cartitems-total-item-shipping'>
                         <p>Shipping Fee</p>
-                        <p>Free</p>
+                        <span>Price may vary depending on the item/destination. Shop Staff will contact you. $21.00</span>
                     </div>
                     <hr />
                     <div className='cartitems-total-item' >
@@ -55,7 +55,7 @@ export const CartItems = () => {
                 <button>PROCEED TO CHECKOUT</button>
             </div>
             <div className="cartitems-promocode">
-                <p>If you have a promo code, Enter is here</p>
+                <p>If you have a promo code, Enter it here</p>
                 <div className="cartitems-promobox">
                     <input type="text" placeholder="Promo code" name="" id="" />
                     <button>Submit</button>

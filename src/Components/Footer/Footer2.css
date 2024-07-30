@@ -116,6 +116,7 @@
     .newsletter-subscribe{
         gap: 15px;
         margin-top: 22px;
+        flex-wrap: wrap;
     }
     .newsletter-subscribe input{
         width: 200px;

@@ -1,22 +1,42 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import "./Item.css"; 
 import { Link } from 'react-router-dom';
+import { ShopContext } from '../../Context/ShopContext';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Item = (props) => {
+  const handleImageClick = () => {
+    window.scrollTo(0, 0);
+  };
+
+  const displayMsg = () => {
+    toast.success("Item added to cart!");
+  };
+
+  const { addToCart } = useContext(ShopContext);
+
   return (
     <div className='item-container'>
+      <div className='image-container'>
         <Link to={`/product/${props.id}`}>
-          <img onClick={window.scrollTo(0,0)} src={props.image} alt="" />
+          <img onClick={handleImageClick} src={props.image} alt={`image of ${props.name}`} />
         </Link>
-        <p>{props.name}</p>
-        <div htmlFor="item prices" className='item-prices'>
-            <label htmlFor="item price" className="item-price-new">
-                ${props.new_price}
-            </label>
-            <label htmlFor="item price" className="item-price-old">
-                ${props.old_price}
-            </label>
+        <div className='item-cart-button-container'>
+          <button onClick={() => { addToCart(props.id); displayMsg(); }} className='item-add-to-cart-button'>
+            Add to Cart
+          </button>
         </div>
+      </div>
+      <p>{props.name}</p>
+      <div className='item-prices'>
+        <label className="item-price-new">
+          ${props.new_price}
+        </label>
+        <label className="item-price-old">
+          ${props.old_price}
+        </label>
+      </div>
     </div>
-  )
-}
+  );
+};

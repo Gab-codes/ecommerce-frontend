@@ -3,11 +3,15 @@ import "./ProductDisplay.css";
 import star_icon from "../Assets/star_icon.png";
 import star_dull_icon from "../Assets/star_dull_icon.png";
 import { ShopContext } from '../../Context/ShopContext';
-import CustomDropdown from '../CustomDropdown/CustomDropdown'; // Adjust the import path as needed
+import { toast } from 'react-toastify';
+import CustomDropdown from '../CustomDropdown/CustomDropdown';
 
 export const ProductDisplay = (props) => {
     const { product } = props;
     const { addToCart } = useContext(ShopContext);
+    const displayMsg = () => {
+        toast.success("Item added to cart!");
+      };
     const [selectedQty, setSelectedQty] = useState(1);
 
     const qtyOptions = Array.from({ length: 10 }, (_, i) => i + 1);
@@ -46,7 +50,7 @@ export const ProductDisplay = (props) => {
                 <hr />
                 <div className="product-display-right-size">
                     <div className='product-display-right-size-radio-container'>
-                        <h2>Colors</h2>
+                        <h2>Colors:</h2>
                         <div className="product-display-right-radio-input">
                             <input type="radio" name='product-color'/>
                             <input type="radio" name='product-color'/>
@@ -67,7 +71,7 @@ export const ProductDisplay = (props) => {
                         <span>Qty:</span>
                         <CustomDropdown options={qtyOptions} selected={selectedQty} onSelect={setSelectedQty} />
                     </div> */}
-                    <button onClick={() => { addToCart(product.id) }}>ADD TO CART</button>
+                    <button onClick={() => { addToCart(product.id), displayMsg() }}>ADD TO CART</button>
                 <p className='product-display-right-category'><span>Category:</span> Women, T-Shirt, Crop Top</p>
                 <p className='product-display-right-category'><span>Tags:</span> Modern, Latest</p>
             </div>

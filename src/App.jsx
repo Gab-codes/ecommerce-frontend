@@ -10,6 +10,8 @@ import { Footer } from './Components/Footer/Footer';
 import men_banner from "./Components/Assets/banner_mens.png";
 import women_banner from "./Components/Assets/banner_women.png";
 import kid_banner from "./Components/Assets/banner_kids.png";
+import { ToastContainer, toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -18,6 +20,18 @@ function App() {
     <div>
       <BrowserRouter>
         <Navbar />
+        <ToastContainer 
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            transition={Bounce}
+          />
           <Routes> 
             <Route path='/' element={<Shop />} />
             <Route path='/mens' element={<ShopCategory banner={men_banner} category="men"/>} />
