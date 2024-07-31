@@ -23,8 +23,10 @@ export const Navbar = () => {
     };
 
     document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('scroll', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('scroll', handleClickOutside);
     };
   }, []);
 
@@ -43,19 +45,19 @@ export const Navbar = () => {
             alt="menu button" 
           />
           <ul className={`menuItems ${menuOpen && "menuOpen"}`}>
-            <li onClick={() => { setMenu("shop") }}>
+            <li onClick={() => { setMenu("shop"); setMenuOpen(!menuOpen); window.scrollTo(0,0) }}>
               <Link style={{ all: "unset" }} to="/">Shop</Link>
               {menu === "shop" ? <hr /> : <></>}
             </li>
-            <li onClick={() => { setMenu("mens") }}>
+            <li onClick={() => { setMenu("mens"); setMenuOpen(!menuOpen); window.scrollTo(0,0)}}>
               <Link style={{ all: "unset" }} to="/mens">Men</Link>
               {menu === "mens" ? <hr /> : <></>}
             </li>
-            <li onClick={() => { setMenu("womens") }}>
+            <li onClick={() => { setMenu("womens"); setMenuOpen(!menuOpen); window.scrollTo(0,0) }}>
               <Link style={{ all: "unset" }} to="/womens">Women</Link>
               {menu === "womens" ? <hr /> : <></>}
             </li>
-            <li onClick={() => { setMenu("kids") }}>
+            <li onClick={() => { setMenu("kids"); setMenuOpen(!menuOpen); window.scrollTo(0,0) }}>
               <Link style={{ all: "unset"}} to="/kids">Kids</Link>
               {menu === "kids" ? <hr /> : <></>}
             </li>

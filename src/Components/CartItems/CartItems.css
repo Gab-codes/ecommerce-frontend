@@ -5,6 +5,7 @@
     height: 3px;
     background: #e2e2e2;
     border: 0;
+    max-width: 90vw;
 }
 .cartitems-format-main{
     display: grid;
@@ -148,8 +149,13 @@
         gap: 1px;
         font-size: 12px;
     }
+    .cartitem-remove-icon{
+        width: 11px;
+    }
 
-
+    .cartitems-total{
+        margin-right: 9vw;
+    }
     .cartitems-down{
         flex-direction: column-reverse;
         margin: 50px 0;

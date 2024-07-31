@@ -21,8 +21,8 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <ToastContainer 
-            position="top-center"
-            autoClose={5000}
+            position="top-right"
+            autoClose={3000}
             hideProgressBar={false}
             newestOnTop={false}
             closeOnClick
