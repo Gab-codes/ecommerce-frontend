@@ -5,15 +5,14 @@ import cart_icon from "../Assets/Navbar/cart_icon.png";
 import navMenu from "../Assets/Navbar/menu.svg";
 import closeMenu from "../Assets/Navbar/closeMenu.svg";
 import account from "../Assets/Navbar/account.svg";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ShopContext } from '../../Context/ShopContext';
 
 export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [menu, setMenu] = useState("shop");
   const navRef = useRef();
-  const { getTotalCartItems} = useContext(ShopContext);
-
+  const { getTotalCartItems } = useContext(ShopContext);
+  const location = useLocation();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -45,21 +44,21 @@ export const Navbar = () => {
             alt="menu button" 
           />
           <ul className={`menuItems ${menuOpen && "menuOpen"}`}>
-            <li onClick={() => { setMenu("shop"); setMenuOpen(!menuOpen); window.scrollTo(0,0) }}>
+            <li className={location.pathname === "/" ? "active" : ""} onClick={() => { setMenuOpen(!menuOpen); window.scrollTo(0,0) }}>
               <Link style={{ all: "unset" }} to="/">Shop</Link>
-              {menu === "shop" ? <hr /> : <></>}
+              {location.pathname === "/" ? <hr /> : <></>}
             </li>
-            <li onClick={() => { setMenu("mens"); setMenuOpen(!menuOpen); window.scrollTo(0,0)}}>
+            <li className={location.pathname === "/mens" ? "active" : ""} onClick={() => { setMenuOpen(!menuOpen); window.scrollTo(0,0) }}>
               <Link style={{ all: "unset" }} to="/mens">Men</Link>
-              {menu === "mens" ? <hr /> : <></>}
+              {location.pathname === "/mens" ? <hr /> : <></>}
             </li>
-            <li onClick={() => { setMenu("womens"); setMenuOpen(!menuOpen); window.scrollTo(0,0) }}>
+            <li className={location.pathname === "/womens" ? "active" : ""} onClick={() => { setMenuOpen(!menuOpen); window.scrollTo(0,0) }}>
               <Link style={{ all: "unset" }} to="/womens">Women</Link>
-              {menu === "womens" ? <hr /> : <></>}
+              {location.pathname === "/womens" ? <hr /> : <></>}
             </li>
-            <li onClick={() => { setMenu("kids"); setMenuOpen(!menuOpen); window.scrollTo(0,0) }}>
-              <Link style={{ all: "unset"}} to="/kids">Kids</Link>
-              {menu === "kids" ? <hr /> : <></>}
+            <li className={location.pathname === "/kids" ? "active" : ""} onClick={() => { setMenuOpen(!menuOpen); window.scrollTo(0,0) }}>
+              <Link style={{ all: "unset" }} to="/kids">Kids</Link>
+              {location.pathname === "/kids" ? <hr /> : <></>}
             </li>
           </ul>
         </div>

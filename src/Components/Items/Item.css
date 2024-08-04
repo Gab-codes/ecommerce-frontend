@@ -1,7 +1,7 @@
 .item-container {
-    width: 240px;
+    width: 200px;
     transition: transform 0.4s ease-in-out;
-    max-height: 370px;
+    max-height: 340px;
     position: relative;
 }
 
@@ -74,11 +74,16 @@
 
 @media screen and (max-width: 830px) {
     .item-container {
-        width: 180px;
+        width: 150px;
     }
 
     .item-prices {
         display: flex;
         gap: 15px;
     }
+    .item-add-to-cart-button {    
+        padding: 7px 0;
+        font-size: 12px;
+    }
+    
 }

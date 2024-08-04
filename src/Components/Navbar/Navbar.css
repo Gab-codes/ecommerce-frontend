@@ -1,6 +1,5 @@
 @import "../../var.css";
 
-
 .navbar {
   position: sticky;
   top: 0;
@@ -19,9 +18,9 @@
   gap: 10px;
 }
 
-.nav-logo img{
-    width: 100%;
-    max-width: 45px;
+.nav-logo img {
+  width: 100%;
+  max-width: 45px;
 }
 
 .nav-logo p {
@@ -58,20 +57,37 @@
 
 .menuItems li {
   cursor: pointer;
-  gap: 12px;
+  gap: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-bottom: 5px;
+  position: relative;
 }
 
-.menuItems hr {
-  border: none;
-  width: 80%;
+.menuItems li:hover {
+  color: #ff4141;
+}
+
+.menuItems li::after {
+  content: '';
+  width: 0;
   height: 3px;
-  border-radius: 10px;
-  background-color: #ff4141;
+  border-radius: 3px;
+  background: #ff4141;
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: width 0.3s ease-in-out;
+}
+
+.menuItems li:hover::after {
+  width: 80%;
+}
+
+.menuItems .active::after {
+  width: 80%;
 }
 
 .nav-login-cart {
@@ -121,6 +137,7 @@
 }
 
 
+
 @media screen and (max-width: 830px) {
   .navbar {
     justify-content: space-between;
@@ -151,7 +168,7 @@
     align-items: flex-end;
     right: 0;
     margin-right: 5%;
-    z-index: 10;
+    z-index: 55;
   }
 
   .menuItems {
@@ -162,13 +179,13 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 13px;
+    gap: 15px;
     margin-right: -6vw;
     margin-top: -99px;
     background-color: #fff;
     width: 300px;
     height: 120vh;
-    font-size: 20px;
+    font-size: 18px;
     padding: 60px 0 0 15px;
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
     z-index: 5;
@@ -193,7 +210,7 @@
   .menuBtn {
     display: block;
     cursor: pointer;
-    z-index: 20;
+    z-index: 200;
   }
 
   .cartIcon {

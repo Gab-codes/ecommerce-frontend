@@ -4,7 +4,6 @@ import star_icon from "../Assets/star_icon.png";
 import star_dull_icon from "../Assets/star_dull_icon.png";
 import { ShopContext } from '../../Context/ShopContext';
 import { toast } from 'react-toastify';
-import CustomDropdown from '../CustomDropdown/CustomDropdown';
 
 export const ProductDisplay = (props) => {
     const { product } = props;
@@ -12,9 +11,12 @@ export const ProductDisplay = (props) => {
     const displayMsg = () => {
         toast.success("Item added to cart!");
       };
-    const [selectedQty, setSelectedQty] = useState(1);
+      const [selectedSize, setSelectedSize] = useState(null);
 
-    const qtyOptions = Array.from({ length: 10 }, (_, i) => i + 1);
+  const handleSizeClick = (size) => {
+    setSelectedSize(size);
+  };
+
 
     return (
         <section className="product-display">
@@ -49,28 +51,28 @@ export const ProductDisplay = (props) => {
                 </div>
                 <hr />
                 <div className="product-display-right-size">
-                    <div className='product-display-right-size-radio-container'>
+                    {/* <div className='product-display-right-size-radio-container'>
                         <h2>Colors:</h2>
                         <div className="product-display-right-radio-input">
                             <input type="radio" name='product-color'/>
                             <input type="radio" name='product-color'/>
                         </div>
-                    </div>
-                    {/* <div className="product-display-right-size-container">
-                        <h2>Select Size</h2>
+                    </div> */}
+                    <div className="product-display-right-size-container">
+                        <h2>Select Size:</h2>
                         <div className="product-display-right-sizes">
-                            <div>S</div>
-                            <div>M</div>
-                            <div>L</div>
-                            <div>XL</div>
-                            <div>XXL</div>  
+                            {['S', 'M', 'L', 'XL', 'XXL'].map(size => (
+                            <div
+                                key={size}
+                                className={`size-option ${selectedSize === size ? 'selected' : ''}`}
+                                onClick={() => handleSizeClick(size)}
+                            >
+                                {size}
+                            </div>
+                            ))}
                         </div>
-                    </div> */}
-                </div>
-                    {/* <div className='product-display-right-item-count'>
-                        <span>Qty:</span>
-                        <CustomDropdown options={qtyOptions} selected={selectedQty} onSelect={setSelectedQty} />
-                    </div> */}
+                        </div>
+                    </div>
                     <button onClick={() => { addToCart(product.id), displayMsg() }}>ADD TO CART</button>
                 <p className='product-display-right-category'><span>Category:</span> Women, T-Shirt, Crop Top</p>
                 <p className='product-display-right-category'><span>Tags:</span> Modern, Latest</p>
