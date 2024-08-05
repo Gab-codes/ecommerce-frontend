@@ -8,6 +8,7 @@
     justify-content: center;
     align-items: center;
     padding: 5px 16px;
+    max-width: 70px;
     gap: 20px;
     border-radius: 4px;
     background-color: #F5F7FF;
@@ -45,9 +46,13 @@
 
 @media screen and (max-width: 760px) {
     .custom-dropdown-header {
-        padding: 1px 10px;
+        padding: 2px 10px;
+        max-width: 55px;
     }
     .custom-dropdown-header .arrow {
         margin: -2px;
+    }
+    .custom-dropdown-list {
+        width: 70px;
     }
 }

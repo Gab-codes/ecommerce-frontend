@@ -47,7 +47,7 @@ export const ProductDisplay = (props) => {
                 </div>
                 <div className="product-display-right-description">
                     A light weight, casually knitted, pullover shirt, that is a nice and wonder to wear in any season without worry.
-                    One of the special cloth made by the governor himself. He spent a whole year working on this masterpiece.
+                    One of the special cloth made by the governor himself.
                 </div>
                 <hr />
                 <div className="product-display-right-size">

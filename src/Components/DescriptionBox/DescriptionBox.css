@@ -38,6 +38,7 @@
     .descriptionbox-description{
         display: flex;
         flex-direction: column;
+        font-size: 14px;
         gap: 25px;
         border: 1px solid #d0d0d0;
         padding: 48px;

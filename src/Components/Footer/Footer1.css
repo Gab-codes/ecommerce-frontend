@@ -35,8 +35,20 @@
 }
 
 @media screen and (max-width: 830px) {
+    .footer1-container{
+        background-color: #F5F7FF;
+        padding: 40px;
+    }
     .footer1{
         flex-direction: column;
         gap: 36px;
+    }
+    .footer1-item{
+        width: 255px;
+    }
+    
+    .footer1-item img{
+        max-width: 55px;
+        max-height: 55px;
     }
 }

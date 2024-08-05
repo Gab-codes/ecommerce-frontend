@@ -65,9 +65,7 @@
   position: relative;
 }
 
-.menuItems li:hover {
-  color: #ff4141;
-}
+
 
 .menuItems li::after {
   content: '';

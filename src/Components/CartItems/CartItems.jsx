@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import "./CartItems.css";
 import { ShopContext } from '../../Context/ShopContext';
 import remove_icon from "../Assets/cart_cross_icon.png";
@@ -6,9 +6,10 @@ import CustomDropdown from '../CustomDropdown/CustomDropdown';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
+import { X } from 'lucide-react';
 
 export const CartItems = () => {
-  const { getTotalCartAmount, all_product, cartItems, removeFromCart, selectedQty, setSelectedQty } = useContext(ShopContext);
+  const { getTotalCartAmount, all_product, cartItems, removeFromCart, selectedQty, setSelectedQty, setCartItems } = useContext(ShopContext);
 
   const displayMsg = () => {
     toast.error("Item removed from cart!");
@@ -21,19 +22,27 @@ export const CartItems = () => {
       ...prevState,
       [id]: qty
     }));
+    setCartItems(prevCartItems => ({
+      ...prevCartItems,
+      [id]: qty
+    }));
   };
 
-  // Check if all items in the cart have a quantity of 0
   const isCartEmpty = Object.values(cartItems).every(qty => qty === 0);
 
-  return (
+  useEffect(() => {
+    getTotalCartAmount();
+  }, [selectedQty, cartItems]);
+
+  return ( 
     <div className="cartitems">
+      <h1>Cart</h1>
       {isCartEmpty ? (
         <div className="cart-empty-message">
           <h2>Your cart is empty</h2>
           <p>Continue shopping to add items to your cart.</p>
           <Link to="/">
-          <button className="empty-cart-return-button">Back to Shop</button>
+            <button className="empty-cart-return-button">Back to Shop</button>
           </Link> 
         </div>
       ) : (
@@ -55,7 +64,7 @@ export const CartItems = () => {
                       <p>{e.name}</p>
                     </span>
                     <label>${e.new_price}</label>
-                    <div className='product-display-right-item-count'>
+                    <div>
                       <CustomDropdown
                         name={e.id}
                         options={qtyOptions}
@@ -64,10 +73,10 @@ export const CartItems = () => {
                       />
                     </div>
                     <label>${e.new_price * (selectedQty[e.id] || cartItems[e.id])}</label>
-                    <img className='cartitem-remove-icon' src={remove_icon} alt="remove icon" onClick={() => {removeFromCart(e.id); displayMsg()}} />
+                    <X className='cartitem-remove-icon' alt="remove icon" onClick={() => { removeFromCart(e.id); displayMsg() }} />
                   </div>
                   <div className="cartitems-mobile-format">
-                    <img className='cartitem-remove-icon' src={remove_icon} alt="remove icon" onClick={() => {removeFromCart(e.id); displayMsg()}} />
+                    <X className='cartitem-remove-icon' alt="remove icon" onClick={() => { removeFromCart(e.id); displayMsg() }} />
                     <span>
                       <img src={e.image} alt={`${e.name} image`} className='carticon-product-icon'/>
                       <p>{e.name}</p>
